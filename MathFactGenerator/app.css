@@ -1,0 +1,22 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+span {
+    font-style: italic;
+}
+
+.operand{
+    text-align: right;
+}
+
+.fact-container hr{
+    border: none;
+    height: 1px;
+    background: black;
+}
+
+.fact-container{
+    display: inline-block;
+    margin-left: 1em;
+}
