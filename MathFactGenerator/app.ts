@@ -1,8 +1,35 @@
-﻿class NumberDescription {
+﻿interface FactGenerator {
+    createConfigurationElement(): HTMLElement;
+    generateFact(): HTMLElement;
+}
+
+interface NumberGenerator {
+    createConfigurationElement(caption: string): HTMLElement;
+    generate(): number;
+}
+
+class BasicNumberGenerator implements NumberGenerator {
     minDigits: number;
     maxDigits: number;
     minValue: number;
     maxValue: number;
+
+    createConfigurationElement(caption: string): HTMLElement {
+        var opCfg: HTMLElement = document.createElement('div');
+        opCfg.innerHTML = '<div>' + caption + '</div><div>Digits: <input type="number" class="min-digits">&ndash;<input type="number" class="max-digits"></div><div>Value: <input type="number" class="min-value">&ndash;<input type="number" class="max-value"></div>';
+
+        var minDigits: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('min-digits')[0];
+        var maxDigits: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('max-digits')[0];
+        var minValue: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('min-value')[0];
+        var maxValue: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('max-value')[0];
+        var _this: BasicNumberGenerator = this;
+        minDigits.onblur = function () { _this.minDigits = this.value == '' ? undefined : parseInt(this.value); };
+        maxDigits.onblur = function () { _this.maxDigits = this.value == '' ? undefined : parseInt(this.value); };
+        minValue.onblur = function () { _this.minValue = this.value == '' ? undefined : parseInt(this.value); };
+        maxValue.onblur = function () { _this.maxValue = this.value == '' ? undefined : parseInt(this.value); };
+
+        return opCfg;
+    }
 
     generate(): number {
         var min: number = -999999999;
@@ -23,11 +50,6 @@
 
         return min + Math.floor(Math.random() * (max - min));
     }
-}
-
-interface FactGenerator {
-    createConfigurationElement(): HTMLElement;
-    generateFact(): HTMLElement;
 }
 
 class GeneratorManager {
@@ -60,42 +82,25 @@ class GeneratorManager {
 }
 
 class LongMultiplicationGenerator implements FactGenerator {
-    leftOperandDescription: NumberDescription;
-    rightOperandDescription: NumberDescription;
-    resultDescription: NumberDescription;
+    leftOperandDescription: BasicNumberGenerator;
+    rightOperandDescription: BasicNumberGenerator;
+    resultDescription: BasicNumberGenerator;
 
     constructor() {
-        this.leftOperandDescription = new NumberDescription();
-        this.rightOperandDescription = new NumberDescription();
-        this.resultDescription = new NumberDescription();
+        this.leftOperandDescription = new BasicNumberGenerator();
+        this.rightOperandDescription = new BasicNumberGenerator();
+        this.resultDescription = new BasicNumberGenerator();
     }
 
     createConfigurationElement(): HTMLElement {
         var tle: HTMLElement = document.createElement('div');
         tle.className = 'configuration long-multiplication';
 
-        tle.appendChild(this.operandConfiguration('Left operand', this.leftOperandDescription));
-        tle.appendChild(this.operandConfiguration('Right operand', this.rightOperandDescription));
-        tle.appendChild(this.operandConfiguration('Result', this.resultDescription));
+        tle.appendChild(this.leftOperandDescription.createConfigurationElement('Left operand'));
+        tle.appendChild(this.rightOperandDescription.createConfigurationElement('Right operand'));
+        tle.appendChild(this.resultDescription.createConfigurationElement('Result'));
 
         return tle;
-    }
-
-    private operandConfiguration(caption: string, opDesc: NumberDescription): HTMLElement {
-        var opCfg: HTMLElement = document.createElement('div');
-        opCfg.innerHTML = '<div>' + caption + '</div><div>Digits: <input type="number" class="min-digits">&ndash;<input type="number" class="max-digits"></div><div>Value: <input type="number" class="min-value">&ndash;<input type="number" class="max-value"></div>';
-
-        var minDigits: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('min-digits')[0];
-        var maxDigits: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('max-digits')[0];
-        var minValue: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('min-value')[0];
-        var maxValue: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('max-value')[0];
-        var _this: LongMultiplicationGenerator = this;
-        minDigits.onblur = function () { opDesc.minDigits = this.value == '' ? undefined : parseInt(this.value); };
-        maxDigits.onblur = function () { opDesc.maxDigits = this.value == '' ? undefined : parseInt(this.value); };
-        minValue.onblur = function () { opDesc.minValue = this.value == '' ? undefined : parseInt(this.value); };
-        maxValue.onblur = function () { opDesc.maxValue = this.value == '' ? undefined : parseInt(this.value); };
-
-        return opCfg;
     }
 
     generateFact(): HTMLElement {
