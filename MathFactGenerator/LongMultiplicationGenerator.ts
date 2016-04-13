@@ -25,7 +25,7 @@ export class LongMultiplicationGenerator implements FactGenerator {
 
     generateFact(): HTMLElement {
         var container: HTMLElement = document.createElement('div');
-        container.className = 'fact-container';
+        container.className = 'fact-container long-multiplication';
 
         var maxDigits: number = 0;
 
@@ -50,6 +50,7 @@ export class LongMultiplicationGenerator implements FactGenerator {
         var hr = document.createElement('hr');
         container.appendChild(hr);
         var spc = document.createElement('div');
+        spc.className = 'result-placeholder';
         spc.innerHTML = '&nbsp;';
         container.appendChild(spc);
 
