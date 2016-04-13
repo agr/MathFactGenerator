@@ -20,5 +20,5 @@ function (lmg, gm, tmg, tdg, hag, hsg) {
     m.addGenerator(new hsg.HorizontalSubtractionGenerator());
     m.buildConfigurator();
 
-    genBtn.onclick = () => { m.generateFacts(); };
+    genBtn.onclick = function() { m.generateFacts(); };
 });

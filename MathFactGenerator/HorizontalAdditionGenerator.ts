@@ -15,7 +15,7 @@ export class HorizontalAdditionGenerator implements FactGenerator {
     createConfigurationElement(): HTMLElement {
         var tle: HTMLElement = document.createElement('div');
         tle.className = 'configuration horizontal-addition';
-
+        tle.innerHTML = '<div class="caption">Horizontal addition</div>';
         tle.appendChild(this.leftOperandDescription.createConfigurationElement('Left operand'));
         tle.appendChild(this.rightOperandDescription.createConfigurationElement('Right operand'));
         tle.appendChild(this.resultDescription.createConfigurationElement('Result'));

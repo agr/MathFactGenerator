@@ -15,7 +15,7 @@ export class HorizontalSubtractionGenerator implements FactGenerator {
     createConfigurationElement(): HTMLElement {
         var tle: HTMLElement = document.createElement('div');
         tle.className = 'configuration horizontal-subtraction';
-        tle.innerHTML = '<div>Horizontal subtraction</div>';
+        tle.innerHTML = '<div class="caption">Horizontal subtraction</div>';
         tle.appendChild(this.leftOperandDescription.createConfigurationElement('Left operand'));
         tle.appendChild(this.rightOperandDescription.createConfigurationElement('Right operand'));
         tle.appendChild(this.resultDescription.createConfigurationElement('Result'));

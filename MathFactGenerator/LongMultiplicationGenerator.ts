@@ -15,7 +15,7 @@ export class LongMultiplicationGenerator implements FactGenerator {
     createConfigurationElement(): HTMLElement {
         var tle: HTMLElement = document.createElement('div');
         tle.className = 'configuration long-multiplication';
-
+        tle.innerHTML = '<div class="caption">Long multiplication</div>';
         tle.appendChild(this.leftOperandDescription.createConfigurationElement('Left operand'));
         tle.appendChild(this.rightOperandDescription.createConfigurationElement('Right operand'));
         tle.appendChild(this.resultDescription.createConfigurationElement('Result'));
