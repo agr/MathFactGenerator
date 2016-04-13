@@ -34,6 +34,7 @@
     <TypeScriptCompile Include="GeneratorManager.ts" />
     <TypeScriptCompile Include="LongMultiplicationGenerator.ts" />
     <TypeScriptCompile Include="NumberGenerator.ts" />
+    <TypeScriptCompile Include="TableMultiplicationGenerator.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

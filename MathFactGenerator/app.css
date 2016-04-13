@@ -2,8 +2,9 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-span {
-    font-style: italic;
+.fact-container.table-multiplication .result-placeholder
+{
+    border-bottom: 1px solid black;
 }
 
 .operand{
