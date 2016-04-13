@@ -40,6 +40,6 @@ export class BasicNumberGenerator implements NumberGenerator {
             max = Math.min(max, this.maxValue);
         }
 
-        return min + Math.floor(Math.random() * (max - min));
+        return min + Math.floor(Math.random() * (max - min + 1));
     }
 }
