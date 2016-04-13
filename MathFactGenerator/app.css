@@ -2,7 +2,10 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-.fact-container.table-multiplication .result-placeholder, .fact-container.table-division .result-placeholder, .fact-container.horizontal-addition .result-placeholder
+.fact-container.table-multiplication .result-placeholder,
+.fact-container.table-division .result-placeholder,
+.fact-container.horizontal-addition .result-placeholder,
+.fact-container.horizontal-subtraction .result-placeholder
 {
     border-bottom: 1px solid black;
 }

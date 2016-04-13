@@ -1,4 +1,13 @@
-﻿requirejs(['LongMultiplicationGenerator', 'GeneratorManager', 'TableMultiplicationGenerator', 'TableDivisionGenerator', 'HorizontalAdditionGenerator'], function (lmg, gm, tmg, tdg, hag) {
+﻿requirejs(
+[
+    'LongMultiplicationGenerator',
+    'GeneratorManager',
+    'TableMultiplicationGenerator',
+    'TableDivisionGenerator',
+    'HorizontalAdditionGenerator',
+    'HorizontalSubtractionGenerator'
+],
+function (lmg, gm, tmg, tdg, hag, hsg) {
     var el = document.getElementById('content');
     var f = document.getElementById('facts');
     var genBtn = document.getElementById('btn-generate');
@@ -8,6 +17,7 @@
     m.addGenerator(new tmg.TableMultiplicationGenerator());
     m.addGenerator(new tdg.TableDivisionGenerator());
     m.addGenerator(new hag.HorizontalAdditionGenerator());
+    m.addGenerator(new hsg.HorizontalSubtractionGenerator());
     m.buildConfigurator();
 
     genBtn.onclick = () => { m.generateFacts(); };
