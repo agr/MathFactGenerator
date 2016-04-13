@@ -2,9 +2,14 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-.fact-container.table-multiplication .result-placeholder, .fact-container.table-division .result-placeholder
+.fact-container.table-multiplication .result-placeholder, .fact-container.table-division .result-placeholder, .fact-container.horizontal-addition .result-placeholder
 {
     border-bottom: 1px solid black;
+}
+
+.configuration input
+{
+    width: 3em;
 }
 
 .operand{
