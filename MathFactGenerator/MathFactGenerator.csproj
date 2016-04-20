@@ -36,6 +36,7 @@
     <TypeScriptCompile Include="HorizontalSubtractionGenerator.ts" />
     <TypeScriptCompile Include="LongMultiplicationGenerator.ts" />
     <TypeScriptCompile Include="NumberGenerator.ts" />
+    <TypeScriptCompile Include="FactGeneratorInstantiator.ts" />
     <TypeScriptCompile Include="TableDivisionGenerator.ts" />
     <TypeScriptCompile Include="TableMultiplicationGenerator.ts" />
   </ItemGroup>

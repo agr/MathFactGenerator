@@ -8,17 +8,13 @@
     'HorizontalSubtractionGenerator'
 ],
 function (lmg, gm, tmg, tdg, hag, hsg) {
-    var el = document.getElementById('content');
-    var f = document.getElementById('facts');
-    var genBtn = document.getElementById('btn-generate');
-
     var m = new gm.GeneratorManager();
-    m.addGenerator(new lmg.LongMultiplicationGenerator());
-    m.addGenerator(new tmg.TableMultiplicationGenerator());
-    m.addGenerator(new tdg.TableDivisionGenerator());
-    m.addGenerator(new hag.HorizontalAdditionGenerator());
-    m.addGenerator(new hsg.HorizontalSubtractionGenerator());
-    m.buildConfigurator();
+    m.addInstantiator(function () { return new lmg.LongMultiplicationGenerator(); }, "Long multiplication");
+    m.addInstantiator(function () { return new tmg.TableMultiplicationGenerator(); }, "Table multiplication");
+    m.addInstantiator(function () { return new tdg.TableDivisionGenerator(); }, "Table division");
+    m.addInstantiator(function () { return new hag.HorizontalAdditionGenerator(); }, "Horizontal addition");
+    m.addInstantiator(function () { return new hsg.HorizontalSubtractionGenerator(); }, "Horizontal subtraction");
 
-    genBtn.onclick = function() { m.generateFacts(); };
+    var genBtn = document.getElementById('generate');
+    genBtn.onclick = function () { m.generateFacts(); };
 });
