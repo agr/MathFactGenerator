@@ -49,3 +49,8 @@
     display: inline-block;
     margin-left: 1em;
 }
+
+#amount
+{
+    width: 4em;
+}

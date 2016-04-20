@@ -40,8 +40,14 @@ export class GeneratorManager {
     }
 
     generateFacts(): void {
+        if (this.generators.length === 0) {
+            return;
+        }
+
         var resultRoot: HTMLElement = document.getElementById('facts');
-        for (var i = 0; i < 20; ++i) {
+        var amountEl: HTMLInputElement = <HTMLInputElement>document.getElementById('amount');
+        var amount: number = parseInt(amountEl.value) || 20;
+        for (var i = 0; i < amount; ++i) {
             var idx: number = Math.floor(Math.random() * this.generators.length);
             var n: HTMLElement = this.generators[idx].generateFact();
             resultRoot.appendChild(n);
