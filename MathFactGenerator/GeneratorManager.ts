@@ -53,4 +53,9 @@ export class GeneratorManager {
             resultRoot.appendChild(n);
         }
     }
+
+    clear(): void {
+        var resultRoot: HTMLElement = document.getElementById('facts');
+        resultRoot.innerHTML = '';
+    }
 }

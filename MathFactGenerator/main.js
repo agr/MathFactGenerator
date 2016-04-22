@@ -17,4 +17,6 @@ function (lmg, gm, tmg, tdg, hag, hsg) {
 
     var genBtn = document.getElementById('generate');
     genBtn.onclick = function () { m.generateFacts(); };
+    var clearBtn = document.getElementById('clear');
+    clearBtn.onclick = function () { m.clear();}
 });
