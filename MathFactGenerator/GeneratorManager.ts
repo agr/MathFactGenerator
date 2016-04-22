@@ -14,7 +14,8 @@ export class GeneratorManager {
         this.instantiators.push(instantiator);
         var pickerArea: HTMLElement = document.getElementById('generator-picker-area');
         var picker: HTMLElement = document.createElement('div');
-        picker.innerHTML = '<div class="picker"><div class="title">' + title + '</div><div class="add-btn-container"><button class="add-generator">Add</button></div></div>';
+        picker.className = 'picker';
+        picker.innerHTML = '<div class="title">' + title + '</div><div class="add-btn-container"><button class="add-generator">Add</button></div>';
         pickerArea.appendChild(picker);
         var btn: HTMLElement = <HTMLElement>picker.getElementsByClassName('add-generator')[0];
         btn.onclick = () => { this.addGenerator(instantiator()) };
