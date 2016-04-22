@@ -52,7 +52,7 @@ export class BasicNumberGenerator implements NumberGenerator {
     getCurrentMin(): number {
         var min: number = -999999999;
         if (typeof this.minDigits === 'number') {
-            if (this.minDigits = 1) {
+            if (this.minDigits === 1) {
                 min = 0;
             } else {
                 min = Math.pow(10, this.minDigits - 1);
