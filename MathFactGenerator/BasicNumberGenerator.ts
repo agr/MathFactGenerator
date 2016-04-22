@@ -34,12 +34,14 @@ export class BasicNumberGenerator implements NumberGenerator {
 
         var max: number = 999999999;
         if (typeof this.maxDigits === 'number') {
-            max = Math.pow(10, this.maxDigits);
+            max = Math.pow(10, this.maxDigits) - 1;
         }
         if (typeof this.maxValue === 'number') {
             max = Math.min(max, this.maxValue);
         }
 
-        return min + Math.floor(Math.random() * (max - min + 1));
+        var rnd: number = Math.random();
+        var result = min + Math.floor(rnd * (max - min + 1));
+        return result;
     }
 }
