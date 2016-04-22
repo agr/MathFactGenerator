@@ -31,7 +31,7 @@ export class HorizontalSubtractionGenerator implements FactGenerator {
         var right: number = this.rightOperandDescription.generate();
         var left = result + right;
 
-        fact.innerHTML = "<span class='operand'>" + left + "</span>-<span class='operand'>" + right + "</span>=<span class='result-placeholder'>&nbsp;</span>";
+        fact.innerHTML = "<span class='operand'>" + left + "</span>&minus;<span class='operand'>" + right + "</span>=<span class='result-placeholder'>&nbsp;</span>";
         var rp: HTMLElement = <HTMLElement>fact.getElementsByClassName('result-placeholder')[0];
         rp.style.width = '3em';
         rp.style.display = 'inline-block';
