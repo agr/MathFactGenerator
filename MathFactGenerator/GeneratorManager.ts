@@ -48,9 +48,15 @@ export class GeneratorManager {
         var amountEl: HTMLInputElement = <HTMLInputElement>document.getElementById('amount');
         var amount: number = parseInt(amountEl.value) || 20;
         for (var i = 0; i < amount; ++i) {
-            var idx: number = Math.floor(Math.random() * this.generators.length);
-            var n: HTMLElement = this.generators[idx].generateFact();
-            resultRoot.appendChild(n);
+            var n: HTMLElement = null;
+            var failCount: number = 0;
+            while (n === null && ++failCount < 100) {
+                var idx: number = Math.floor(Math.random() * this.generators.length);
+                n = this.generators[idx].generateFact();
+            }
+            if (n !== null) {
+                resultRoot.appendChild(n);
+            }
         }
     }
 

@@ -6,6 +6,9 @@ export class BasicNumberGenerator implements NumberGenerator {
     minValue: number;
     maxValue: number;
 
+    tempMaxValue: number;
+    tempMinValue: number;
+
     createConfigurationElement(caption: string): HTMLElement {
         var opCfg: HTMLElement = document.createElement('div');
         opCfg.innerHTML = '<div>' + caption + '</div><div>Digits: <input type="number" class="min-digits">&ndash;<input type="number" class="max-digits"></div><div>Value: <input type="number" class="min-value">&ndash;<input type="number" class="max-value"></div>';
@@ -24,14 +27,15 @@ export class BasicNumberGenerator implements NumberGenerator {
     }
 
     generate(): number {
-        var min: number = -999999999;
-        if (typeof this.minDigits === 'number') {
-            min = Math.pow(10, this.minDigits - 1);
-        }
-        if (typeof this.minValue === 'number') {
-            min = Math.max(min, this.minValue);
-        }
+        var min: number = this.getCurrentMin();
+        var max: number = this.getCurrentMax();
 
+        var rnd: number = Math.random();
+        var result = min + Math.floor(rnd * (max - min + 1));
+        return result;
+    }
+
+    getCurrentMax(): number {
         var max: number = 999999999;
         if (typeof this.maxDigits === 'number') {
             max = Math.pow(10, this.maxDigits) - 1;
@@ -39,9 +43,32 @@ export class BasicNumberGenerator implements NumberGenerator {
         if (typeof this.maxValue === 'number') {
             max = Math.min(max, this.maxValue);
         }
+        if (typeof this.tempMaxValue === 'number') {
+            max = Math.min(max, this.tempMaxValue);
+        }
+        return max;
+    }
 
-        var rnd: number = Math.random();
-        var result = min + Math.floor(rnd * (max - min + 1));
-        return result;
+    getCurrentMin(): number {
+        var min: number = -999999999;
+        if (typeof this.minDigits === 'number') {
+            min = Math.pow(10, this.minDigits - 1);
+        }
+        if (typeof this.minValue === 'number') {
+            min = Math.max(min, this.minValue);
+        }
+        if (typeof this.tempMinValue === 'number') {
+            min = Math.max(min, this.tempMinValue);
+        }
+        return min;
+    }
+
+    reset(): void {
+        this.tempMaxValue = undefined;
+        this.tempMinValue = undefined;
+    }
+
+    canGenerate(): boolean {
+        return this.getCurrentMin() <= this.getCurrentMax();
     }
 }
