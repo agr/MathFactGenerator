@@ -1,5 +1,7 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
+    font-size: 14pt;
+    line-height: 2;
 }
 
 .fact-container.table-multiplication .result-placeholder,
@@ -47,8 +49,7 @@
 
 .fact-container{
     display: inline-block;
-    margin-left: 1em;
-    min-width: 10em;
+    min-width: 20%;
 }
 
 #amount
