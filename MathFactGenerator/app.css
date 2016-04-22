@@ -48,9 +48,14 @@
 .fact-container{
     display: inline-block;
     margin-left: 1em;
+    min-width: 10em;
 }
 
 #amount
 {
     width: 4em;
+}
+
+@media print {
+    .noprint {display: none;}
 }
