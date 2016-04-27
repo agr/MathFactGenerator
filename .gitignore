@@ -214,4 +214,5 @@ ModelManifest.xml
 
 *.js
 !main.js
+!require.js
 *.js.map
