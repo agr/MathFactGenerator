@@ -29,6 +29,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="AdditionGenerator.ts" />
     <TypeScriptCompile Include="BasicNumberGenerator.ts" />
     <TypeScriptCompile Include="FactGenerator.ts" />
     <TypeScriptCompile Include="GeneratorManager.ts" />
