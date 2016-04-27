@@ -1,7 +1,7 @@
 ﻿import { FactGenerator } from './FactGenerator';
 import { BasicNumberGenerator } from './BasicNumberGenerator';
 
-export class HorizontalAdditionGenerator implements FactGenerator {
+export class HorizontalAdditionRenderer implements FactGenerator {
     leftOperandDescription: BasicNumberGenerator;
     rightOperandDescription: BasicNumberGenerator;
     resultDescription: BasicNumberGenerator;
