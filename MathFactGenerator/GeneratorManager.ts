@@ -26,7 +26,7 @@ export class GeneratorManager {
         var cfgRoot: HTMLElement = document.getElementById('configuration');
         var cfgElem: HTMLElement = document.createElement('div');
         cfgElem.className = 'configuration-container';
-        cfgElem.innerHTML = '<div class="close">&times;</div>';
+        cfgElem.innerHTML = '<button class="close">&times;</button>';
 
         cfgRoot.appendChild(cfgElem);
         var n: HTMLElement = generator.createConfigurationElement();

@@ -43,6 +43,11 @@
     right: 0;
     top: 0;
     cursor: pointer;
+    width: 1em;
+    height: 1em;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 .configuration 
