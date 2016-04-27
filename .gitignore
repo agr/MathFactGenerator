@@ -211,3 +211,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 *.sln
+
+*.js
+!main.js
+*.js.map
