@@ -1,13 +1,16 @@
 ﻿import { FactGenerator } from './FactGenerator';
 import { BasicNumberGenerator } from './BasicNumberGenerator';
+import { MultiplicationGenerator, MultiplicationFact } from './MultiplicationGenerator';
 
-export class TableMultiplicationGenerator implements FactGenerator {
-    gen: BasicNumberGenerator;
+export class TableMultiplicationRenderer implements FactGenerator {
+    gen: MultiplicationGenerator;
 
     constructor() {
-        this.gen = new BasicNumberGenerator();
-        this.gen.minValue = 0;
-        this.gen.maxValue = 12;
+        this.gen = new MultiplicationGenerator();
+        this.gen.leftOperandDescription.minValue = 0;
+        this.gen.leftOperandDescription.maxValue = 12;
+        this.gen.rightOperandDescription.minValue = 0;
+        this.gen.rightOperandDescription.maxValue = 12;
     }
 
     createConfigurationElement(): HTMLElement {
@@ -22,11 +25,13 @@ export class TableMultiplicationGenerator implements FactGenerator {
         var fact: HTMLElement = document.createElement('div');
         fact.className = 'fact-container table-multiplication';
 
-        var left: number = this.gen.generate();
-        var right: number = this.gen.generate();
-        var result = left * right;
+        var r: MultiplicationFact = this.gen.generateFact();
 
-        fact.innerHTML = "<span class='operand'>" + left + "</span>&times;<span class='operand'>" + right + "</span>=<span class='result-placeholder'>&nbsp;</span>";
+        if (r === null) {
+            return null;
+        }
+
+        fact.innerHTML = "<span class='operand'>" + r.left + "</span>&times;<span class='operand'>" + r.right + "</span>=<span class='result-placeholder'>&nbsp;</span>";
         var rp: HTMLElement = <HTMLElement>fact.getElementsByClassName('result-placeholder')[0];
         rp.style.width = '3em';
         rp.style.display = 'inline-block';

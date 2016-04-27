@@ -17,7 +17,7 @@ export class MultiplicationGenerator {
         this.resultDescription = new BasicNumberGenerator();
     }
 
-    generateNumber(): MultiplicationFact {
+    generateFact(): MultiplicationFact {
         var r: MultiplicationFact = new MultiplicationFact();
 
         this.leftOperandDescription.reset();
@@ -31,10 +31,10 @@ export class MultiplicationGenerator {
             this.rightOperandDescription.tempMinValue = Math.ceil(this.resultDescription.getCurrentMin() / this.leftOperandDescription.getCurrentMax());
         }
         if (this.leftOperandDescription.getCurrentMax() * this.rightOperandDescription.getCurrentMin() < this.resultDescription.getCurrentMax()) {
-            this.leftOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMin() / this.rightOperandDescription.getCurrentMin());
+            this.leftOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMax() / this.rightOperandDescription.getCurrentMin());
         }
         if (this.leftOperandDescription.getCurrentMin() * this.rightOperandDescription.getCurrentMax() < this.resultDescription.getCurrentMax()) {
-            this.rightOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMin() / this.leftOperandDescription.getCurrentMin());
+            this.rightOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMax() / this.leftOperandDescription.getCurrentMin());
         }
 
         if (!(this.leftOperandDescription.canGenerate() && this.rightOperandDescription.canGenerate())) {

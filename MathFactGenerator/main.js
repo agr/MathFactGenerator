@@ -2,15 +2,15 @@
 [
     'LongMultiplicationGenerator',
     'GeneratorManager',
-    'TableMultiplicationGenerator',
+    'TableMultiplicationRenderer',
     'TableDivisionGenerator',
     'HorizontalAdditionRenderer',
     'HorizontalSubtractionRenderer'
 ],
-function (lmg, gm, tmg, tdg, har, hsr) {
+function (lmg, gm, tmr, tdg, har, hsr) {
     var m = new gm.GeneratorManager();
     m.addInstantiator(function () { return new lmg.LongMultiplicationGenerator(); }, "Long multiplication");
-    m.addInstantiator(function () { return new tmg.TableMultiplicationGenerator(); }, "Table multiplication");
+    m.addInstantiator(function () { return new tmr.TableMultiplicationRenderer(); }, "Table multiplication");
     m.addInstantiator(function () { return new tdg.TableDivisionGenerator(); }, "Table division");
     m.addInstantiator(function () { return new har.HorizontalAdditionRenderer(); }, "Horizontal addition");
     m.addInstantiator(function () { return new hsr.HorizontalSubtractionRenderer(); }, "Horizontal subtraction");
