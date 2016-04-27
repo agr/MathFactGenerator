@@ -2,7 +2,7 @@
 import { BasicNumberGenerator } from './BasicNumberGenerator';
 import { AdditionGenerator, AdditionFact } from './AdditionGenerator';
 
-export class HorizontalSubtractionGenerator implements FactGenerator {
+export class HorizontalSubtractionRenderer implements FactGenerator {
     gen: AdditionGenerator;
 
     constructor() {
