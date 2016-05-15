@@ -16,7 +16,10 @@ export class TableMultiplicationRenderer implements FactGenerator {
     createConfigurationElement(): HTMLElement {
         var cfg: HTMLElement = document.createElement('div');
         cfg.className = 'configuration table-multiplication';
-        cfg.innerHTML = 'table multiplication';
+        cfg.innerHTML = '<div>Horizontal multiplication</div>';
+        cfg.appendChild(this.gen.leftOperandDescription.createConfigurationElement('Left operand'));
+        cfg.appendChild(this.gen.rightOperandDescription.createConfigurationElement('Right operand'));
+        cfg.appendChild(this.gen.resultDescription.createConfigurationElement('Result'));
 
         return cfg;
     }
