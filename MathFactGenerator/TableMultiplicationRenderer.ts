@@ -30,7 +30,7 @@ export class TableMultiplicationRenderer implements FactGenerator {
 
         var r: MultiplicationFact = this.gen.generateFact();
 
-        if (r === null) {
+        if (!r) {
             return null;
         }
 

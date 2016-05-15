@@ -18,26 +18,42 @@ export class MultiplicationGenerator {
     }
 
     generateFact(): MultiplicationFact {
+        if (Math.random() < 0.5) {
+            return MultiplicationGenerator.generate(this.leftOperandDescription, this.rightOperandDescription, this.resultDescription);
+        } else {
+            var r: MultiplicationFact = MultiplicationGenerator.generate(this.rightOperandDescription, this.leftOperandDescription, this.resultDescription);
+            if (!r) {
+                return null;
+            }
+
+            var t: number = r.left;
+            r.left = r.right;
+            r.right = t;
+            return r;
+        }
+    }
+
+    private static generate(left: BasicNumberGenerator, right: BasicNumberGenerator, result: BasicNumberGenerator): MultiplicationFact {
         var r: MultiplicationFact = new MultiplicationFact();
 
-        this.leftOperandDescription.reset();
-        this.rightOperandDescription.reset();
-        this.resultDescription.reset();
+        left.reset();
+        right.reset();
+        result.reset();
 
-        if (this.leftOperandDescription.getCurrentMin() * this.rightOperandDescription.getCurrentMax() < this.resultDescription.getCurrentMin()) {
-            this.leftOperandDescription.tempMinValue = Math.ceil(this.resultDescription.getCurrentMin() / this.rightOperandDescription.getCurrentMax());
+        if (left.getCurrentMin() * right.getCurrentMax() < result.getCurrentMin()) {
+            left.tempMinValue = Math.ceil(result.getCurrentMin() / right.getCurrentMax());
         }
-        if (this.leftOperandDescription.getCurrentMax() * this.rightOperandDescription.getCurrentMin() < this.resultDescription.getCurrentMin()) {
-            this.rightOperandDescription.tempMinValue = Math.ceil(this.resultDescription.getCurrentMin() / this.leftOperandDescription.getCurrentMax());
+        if (left.getCurrentMax() * right.getCurrentMin() < result.getCurrentMin()) {
+            right.tempMinValue = Math.ceil(result.getCurrentMin() / left.getCurrentMax());
         }
-        if (this.leftOperandDescription.getCurrentMax() * this.rightOperandDescription.getCurrentMin() < this.resultDescription.getCurrentMax()) {
-            this.leftOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMax() / this.rightOperandDescription.getCurrentMin());
+        if (left.getCurrentMax() * right.getCurrentMin() < result.getCurrentMax()) {
+            left.tempMaxValue = Math.floor(result.getCurrentMax() / right.getCurrentMin());
         }
-        if (this.leftOperandDescription.getCurrentMin() * this.rightOperandDescription.getCurrentMax() < this.resultDescription.getCurrentMax()) {
-            this.rightOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMax() / this.leftOperandDescription.getCurrentMin());
+        if (left.getCurrentMin() * right.getCurrentMax() < result.getCurrentMax()) {
+            right.tempMaxValue = Math.floor(result.getCurrentMax() / left.getCurrentMin());
         }
 
-        if (!(this.leftOperandDescription.canGenerate() && this.rightOperandDescription.canGenerate())) {
+        if (!(left.canGenerate() && right.canGenerate())) {
             return null;
         }
 
@@ -45,19 +61,19 @@ export class MultiplicationGenerator {
         var allRestrictionsMet: boolean = false;
 
         do {
-            r.left = this.leftOperandDescription.generate();
-            this.rightOperandDescription.tempMinValue = Math.ceil(this.resultDescription.getCurrentMin() / r.left);
-            this.rightOperandDescription.tempMaxValue = Math.floor(this.resultDescription.getCurrentMax() / r.left);
+            r.left = left.generate();
+            right.tempMinValue = Math.ceil(result.getCurrentMin() / r.left);
+            right.tempMaxValue = Math.floor(result.getCurrentMax() / r.left);
 
-            if (!this.rightOperandDescription.canGenerate()) {
+            if (!right.canGenerate()) {
                 ++failCount;
             }
             else {
-                r.right = this.rightOperandDescription.generate();
+                r.right = right.generate();
                 r.result = r.left * r.right;
                 allRestrictionsMet = true;
             }
-            this.rightOperandDescription.reset();
+            right.reset();
         } while (!allRestrictionsMet && failCount < 100);
 
         if (!allRestrictionsMet) {
