@@ -11,7 +11,13 @@ export class BasicNumberGenerator implements NumberGenerator {
 
     createConfigurationElement(caption: string): HTMLElement {
         var opCfg: HTMLElement = document.createElement('div');
-        opCfg.innerHTML = '<div>' + caption + '</div><div>Digits: <input type="number" class="min-digits">&ndash;<input type="number" class="max-digits"></div><div>Value: <input type="number" class="min-value">&ndash;<input type="number" class="max-value"></div>';
+        opCfg.innerHTML = [
+            '<div>' + caption + '</div>',
+            '<div>Digits: <input type="number" class="min-digits" ' + (typeof this.minDigits !== 'undefined' ? `value="${this.minDigits}"` : '') + '>',
+            '&ndash;<input type="number" class="max-digits" ' + (typeof this.maxDigits !== 'undefined' ? `value="${this.maxDigits}"` : '') + '></div>',
+            '<div>Value: <input type="number" class="min-value" ' + (typeof this.minValue !== 'undefined' ? `value="${this.minValue}"` : '') + '>',
+            '&ndash;<input type="number" class="max-value" ' + (typeof this.maxValue !== 'undefined' ? `value="${this.maxValue}"` : '') + '></div>'
+        ].join('');
 
         var minDigits: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('min-digits')[0];
         var maxDigits: HTMLElement = <HTMLElement>opCfg.getElementsByClassName('max-digits')[0];
